@@ -1,0 +1,321 @@
+<script partial="label" type="text/x-handlebars-template">
+  {{#if label}}<label for="{{name}}" class="control-label">{{label}}</label>{{/if}}
+</script>
+<script partial="help-block" type="text/x-handlebars-template">
+  {{#if help}}
+  <p class="help-block">{{{help}}}</p>{{/if}}
+</script>
+<script partial="select" type="text/x-handlebars-template">
+  <select class="form-control {{class}}" {{{attributes}}} name="{{name}}" id="{{id}}">
+    {{#each values}} {{#if value}}
+    <option value="{{value}}" {{#each data}} {{name}}="{{value}}" {{/each}}>{{text}}</option>
+    {{else}}
+    <option value="{{this}}">{{this}}</option>
+    {{/if}} {{/each}}
+  </select> {{> help-block }}
+</script>
+<script partial="input" type="text/x-handlebars-template">
+  <input type="{{type}}" class="form-control {{class}}" {{{attributes}}} name="{{name}}" id="{{id}}" placeholder="{{placeholder}}"> {{> help-block }}
+</script>
+<script partial="tabs" type="text/x-handlebars-template">
+  <!-- tabs content -->
+  <div class="tab-content">
+    {{#if values}} {{#each values}} {{#if value}}
+    <!-- tab -->
+    <div class="tab-pane fade" id="{{../id}}-{{value}}">
+      <div class="text-block col-lg-5 col-lg-offset-1 col-md-6 col-sm-6">
+        <h4 class="gray-color">{{{data-description-title}}}</h4>
+        <p class="p-style2 gray-color">{{{data-description-html}}}</p>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="img-block">
+          <img src="{{data-image-src}}" alt="{{value}}">
+        </div>
+      </div>
+    </div>{{/if}} {{/each}} {{/if}}
+  </div>
+</script>
+<script id="row_col2_col10" type="text/x-handlebars-template">
+  <div class="row">
+    <div class="form-group has-feedback container">
+      <div class="col-sm-2">
+        {{> label }}
+      </div>
+      <div class="col-sm-10">
+        {{> (lookup . 'element') }}
+      </div>
+    </div>
+  </div>
+</script>
+<script id="row-center_col12_col12" type="text/x-handlebars-template">
+  <div class="row center">
+    <div class="form-group has-feedback container">
+      <div class="col-sm-12">
+        {{> label }}
+      </div>
+      <div class="col-sm-12">
+        {{> (lookup . 'element') }}
+      </div>
+    </div>
+  </div>
+</script>
+<script id="row_col12-center_col12" type="text/x-handlebars-template">
+  <div class="row">
+    <div class="form-group has-feedback container">
+      <div class="col-sm-12 center">
+        {{> label }}
+      </div>
+      <div class="col-sm-12">
+        {{> (lookup . 'element') }}
+      </div>
+    </div>
+  </div>
+</script>
+<script id="col2_col4" type="text/x-handlebars-template">
+  <div class="col-sm-2">
+    {{> label }}
+  </div>
+  <div class="col-sm-4">
+    {{> (lookup . 'element') }}
+  </div>
+</script>
+<script id="row_col12-center_col12--tabs" type="text/x-handlebars-template">
+  <div class="row">
+    <div class="form-group has-feedback container">
+      <div class="col-sm-12 center">
+        {{> label }}
+      </div>
+      <div class="col-sm-12">
+        {{> (lookup . 'element') }} {{> tabs }}
+      </div>
+    </div>
+  </div>
+</script>
+<script id="cleanse-owlcarousel-template" type="text/x-handlebars-template">
+  <div class="row">
+    <div class="form-group has-feedback container">
+      <div class="col-sm-12 center">
+        <label for="{{name}}" class="control-label">{{label}}</label>
+      </div>
+      <div class="col-sm-12 offer-tabs">
+        <div>
+          {{#if values}}
+          <select class="hidden form-control {{class}}" {{{attributes}}} name="{{name}}" id="{{id}}">
+          {{#each values}} {{#if value}}
+          <option value="{{value}}" {{#each data}} {{name}}="{{value}}" {{/each}}>{{value}}</option>
+          {{else}}
+          <option value="{{this}}">{{this}}</option>
+          {{/if}} {{/each}}
+        </select> {{/if}}
+        </div>
+        <!-- owl-carousel content -->
+        <div id="{{id}}-owl-carousel" name="{{name}}" class="owl-carousel {{class}}" {{{attributes}}}>
+          {{#if values}} {{#each values}} {{#if value}}
+          <!-- item -->
+          <div value="{{value}}" {{#each data}} {{name}}="{{value}}" {{/each}}>
+            <a href="#{{id}}-{{value}}" data-toggle="tab">
+              <span class="arrow"></span>
+              <img src="{{data-image-src}}" alt="{{value}}">
+              <h3>{{text}}</h3>
+            </a>
+          </div>
+          {{else}}
+          <div value="{{this}}">{{this}}</div>
+          {{/if}} {{/each}} {{else}}
+          <div type="{{type}}" class="{{class}}" {{{attributes}}} name="{{name}}" id="{{id}}" placeholder="{{placeholder}}">
+          </div>
+          {{/if}} {{#if help}}
+          <p class="help-block">{{{help}}}</p>
+          {{/if}}
+        </div>
+
+
+        <!-- tabs content -->
+        <div class="tab-content">
+          {{#if values}} {{#each values}} {{#if value}}
+          <!-- tab -->
+          <div class="tab-pane fade" id="{{id}}-{{value}}">
+            <div class="container">
+              <div class="row">
+                <div class="text-block col-lg-5 col-lg-offset-1 col-md-6 col-sm-6">
+                  <h4 class="gray-color">{{{data-description-title}}}</h4>
+                  <p class="p-style2 gray-color">{{{data-description-html}}}</p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                  <div class="img-block">
+                    <img src="{{data-image-src}}" alt="{{value}}">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>{{/if}} {{/each}} {{/if}}
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</script>
+<script id="blends-owlcarousel-template" type="text/x-handlebars-template">
+  <div class="row">
+    <div class="form-group has-feedback container">
+      <div class="col-sm-12">
+        <label for="{{name}}" class="control-label">{{label}}</label>
+      </div>
+      <div class="col-sm-12 offer-tabs">
+        <div>
+          <select multiple="multiple" class="hidden form-control {{class}}" {{{attributes}}} name="{{name}}" id="{{id}}">
+          </select>
+          <div class="row" id="{{id}}-list">
+            </ul>
+          </div>
+          <!-- owl-carousel content -->
+          <div id="{{id}}-owl-carousel" name="{{name}}" class="owl-carousel {{class}}" {{{attributes}}}>
+            {{#each values}}
+            <div class="owl-item" value="{{value}}" {{#each data}} {{name}}="{{value}}" {{/each}}>
+              <a href="#{{id}}-{{value}}" data-toggle="tab">
+                <span class="arrow"></span>
+                <img src="{{data-image-src}}" alt="{{value}}">
+                <h3>{{text}}</h3>
+                <div class="btn btn-default" onclick="javascript:addBlend(this);">Add blend
+                  <option template style="display:none;" value="{{value}}" {{#each data}} {{name}}="{{value}}" {{/each}}>{{value}}</option>
+                  <div template style="display:none;" class="category col-lg-2 col-md-2 col-sm-4 col-xs-4" onclick="javascript:removeBlend(this);" value="{{value}}" {{#each data}} {{name}}="{{value}}" {{/each}}>
+                    <img src="{{data-image-src}}" alt="{{value}}">
+                    <p>{{value}}</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            {{/each}}
+          </div>
+
+
+          <!-- tabs content -->
+          <div class="tab-content">
+            {{#if values}} {{#each values}} {{#if value}}
+            <!-- tab -->
+            <div class="tab-pane fade" id="{{id}}-{{value}}">
+              <div class="container">
+                <div class="row">
+                  <div class="text-block col-lg-5 col-lg-offset-1 col-md-6 col-sm-6">
+                    <h3 class="gray-color">{{{data-description-title}}}</h3>
+                    <p class="p-style2 gray-color">{{{data-description-html}}}</p>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="img-block">
+                      <img src="{{data-image-src}}" alt="{{value}}">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>{{/if}} {{/each}} {{/if}}
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+</script>
+<script id="unorderedlist-template" type="text/x-handlebars-template">
+  <div class="row">
+    <div class="form-group has-feedback container">
+      <div class="col-sm-2">
+        <label for="{{name}}" class="control-label">{{label}}</label>
+      </div>
+      <div class="col-sm-10">
+        {{#if values}}
+        <ul class="{{class}}" {{{attributes}}} name="{{name}}" id="{{id}}">
+          {{#each values}} {{#if value}}
+          <li value="{{value}}" {{#each data}} {{name}}="{{value}}" {{/each}}>{{{html}}}</li>
+          {{else}}
+          <li value="{{this}}">{{this}}</li>
+          {{/if}} {{/each}}
+        </ul>
+        {{/if}} {{#if help}}
+        <p class="help-block">{{{help}}}</p>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</script>
+<script id="row_col2_col10--number" type="text/x-handlebars-template">
+  <div class="row">
+    <div class="form-group has-feedback container">
+      <div class="col-sm-2">
+        {{> label}}
+      </div>
+      <div class="col-sm-10">
+        <div class="input-group">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="{{name}}">
+                <span class="glyphicon glyphicon-minus"></span>
+          </button>
+          </span>
+          <input type="{{type}}" class="form-control input-number {{class}}" {{{attributes}}} name="{{name}}" id="{{id}}" placeholder="{{placeholder}}">
+          <!-- <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10"> -->
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="{{name}}">
+                  <span class="glyphicon glyphicon-plus"></span>
+          </button>
+          </span>
+        </div>
+        {{> help-block }}
+      </div>
+    </div>
+  </div>
+</script>
+<script id="submit-template" type="text/x-handlebars-template">
+  <div class="row">
+    <div class="form-group has-feedback container">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-10">
+        <button type="{{type}}" class="form-control {{class}}" id="{{id}}">{{label}}</button>
+        <p id="result">
+        </p>
+      </div>
+    </div>
+  </div>
+</script>
+<script id="rangecalendar-template" type="text/x-handlebars-template">
+  <div class="row">
+    <div class="col-sm-2">
+      {{label}}
+    </div>
+    <div class="col-sm-10">
+      <div class="calendar-values row">
+        <div class="col col-md-4"> <span class="title">TWO</span> <span class="value text-color">LESS</span> <span class="label text-color">Days</span> </div>
+        <div class="col col-md-4 days-width"> <span class="title">Duration</span> <span class="value text-color"></span> <span class="label text-color">Days</span> </div>
+        <div class="col col-md-4"> <span class="title">TWO</span><span data-toggle="datepicker" data-type="add" class="value text-color fa fa-angle-right"></span> <span class="label text-color">Days</span> </div>
+      </div>
+      <div id="{{id}}"></div>
+      <div class="calendar-values row">
+        <div class="col col-md-4 from-now"> <span class="title">Start</span> <span class="value text-color"></span> <span class="label text-color">from now</span> </div>
+        <div class="col col-md-4 start-date"> <span class="title">Start Date</span> <span class="value text-color"></span> <span class="label text-color"></span> </div>
+        <div class="col col-md-4 end-date"> <span class="title">End Date</span> <span class="value text-color"></span> <span class="label text-color"></span> </div>
+      </div>
+    </div>
+  </div>
+</script>
+<script id="map-template" type="text/x-handlebars-template">
+  <div style='overflow:hidden;height:440px;width:100%;'>
+    <!-- <a href="#none" id="gmap-init-address" class="btn btn-default">
+      <span class="glyphicon glyphicon-home"></span> <span class="address">location of my address</span>
+    </a>
+    <a href="#none" id="gmap-init-position" class="btn btn-default">
+      <span class="glyphicon glyphicon-screenshot"></span> my current position
+    </a>
+    <a href="#none" id="gmap-init-click" class="btn btn-default">
+      <span class="glyphicon glyphicon-pushpin"></span> select position
+    </a>
+    <input type="text" id="address" />
+    <input type="text" id="location" />
+    <div id="gmap-location">location</div>-->
+    <div id='gmap_canvas' style='height:440px;width:100%;'></div>
+    <style>
+      #gmap_canvas img {
+        max-width: none!important;
+        background: none!important
+      }
+    </style>
+  </div>
+</script>

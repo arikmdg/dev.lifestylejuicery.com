@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>TEST</title>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript">
+        var $d;
+        $(document).ready(function() {
+            $d = $('#debug');
+            $('#button_detect').click(function() {
+                runTests();
+            });
+            runTests();
+        });
+
+
+        var debug = function() {
+            console.debug(arguments);
+            $d.append('<hr/>')
+            $d.append('<div/>').append(JSON.stringify(arguments));
+        }
+
+        window.onerror = function() {
+            debug(arguments);
+        };
+
+
+        var getAjaxJSONP = function(name, data, url) {
+            $.ajax({
+                url: url,
+                crossDomain: true,
+                cache: false,
+                dataType: 'jsonp',
+                contentType: 'text/plain',
+                data: data,
+                success: function() {
+                    debug(name, 'success');
+                    // debug(name, 'success', arguments);
+                },
+                error: function() {
+                    debug(name, 'error', arguments);
+                }
+            }).done(function() {
+                // debug(name, 'done');
+            }).complete(function() {
+                // debug(name, 'complete');
+            })
+        };
+
+        var getAjaxPOST = function(name, data, url) {
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: data,
+                dataType: 'json',
+                success: function() {
+                    debug(name, 'success');
+                    // debug(name, 'success', arguments);
+                },
+                error: function() {
+                    debug(name, 'error', arguments);
+                }
+            });
+        };
+
+        var getJSON = function(name, data, url) {
+            $.getJSON(url, data,
+                function() {
+                    debug(name, 'success');
+                    // debug(name, 'success', arguments);
+                }).fail(function() {
+                debug(name, 'error', arguments);
+            });
+        };
+
+
+        function runTests() {
+            api = 'https://www.lifestylejuicery.com/api/v1/json/?url=';
+            url = 'https://script.google.com/macros/s/AKfycbzf413B86UG_kSH-r65OAEsUzAUNQdoU-NEFkA9hYmmvlHDBaU/exec';
+            //url = '/test.json';
+            data = {
+                'country': 'TH',
+                'temp': 'xxx'
+            };
+
+            getAjaxJSONP('getAjaxJSONP', data, url);
+            getAjaxJSONP('getAjaxJSONP-API', data, api + url);
+            getAjaxPOST('getAjaxPOST', data, url);
+            getAjaxPOST('getAjaxPOST-API', data, api + url);
+            getJSON('getJSON', data, url);
+            getJSON('getJSON-API', data, api + url);
+
+        };
+    </script>
+</head>
+
+<body>
+    <div id="button_detect">CLICK ME!!!!</div>
+    <div id="debug"></div>
+
+</body>
