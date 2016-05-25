@@ -101,7 +101,8 @@ ul.thumbnails.image_picker_selector {
 }
 
 img.image_picker_image {
-  max-width: 250px;
+  /* max-width: 250px; */
+  max-width: 100%;
 }
 
 
