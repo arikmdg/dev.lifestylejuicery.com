@@ -2037,4 +2037,14 @@ img.pull-left {
     .paddingall {
         padding: 15px;
     }
+
+    .head-cleanse {
+        background: url(../images/bg_header_cleanse_mobile.jpg) no-repeat;
+        background-size: cover;
+    }
+
+    .head-juicing {
+        background: url(../images/bg_header_juice_mobile.jpg) no-repeat;
+        background-size: cover;
+    }
 }
