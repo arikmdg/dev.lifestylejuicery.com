@@ -2038,13 +2038,23 @@ img.pull-left {
         padding: 15px;
     }
 
+    .head-index {
+        background: url(../images/mobile-home-bg.jpg) no-repeat;
+        background-size: cover;
+    }   
+
     .head-cleanse {
-        background: url(../images/bg_header_cleanse_mobile.jpg) no-repeat;
+        background: url(../images/mobile-cleanse-bg.jpg) no-repeat;
         background-size: cover;
     }
 
     .head-juicing {
-        background: url(../images/bg_header_juice_mobile.jpg) no-repeat;
+        background: url(../images/mobile-juicing-bg.jpg) no-repeat;
+        background-size: cover;
+    }
+
+    .head-about {
+        background: url(../images/mobile-about-bg.jpg) no-repeat;
         background-size: cover;
     }
 }
